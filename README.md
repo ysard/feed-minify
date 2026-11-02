@@ -1,4 +1,4 @@
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ysard/feed-minify)](https://github.com/ysard/feed-minify/releases/latest/)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/ysard/feed-minify)](https://github.com/ysard/feed-minify/releases/latest/)
 [![python versions on pypi](https://img.shields.io/pypi/pyversions/pelican-feed-minify)](https://pypi.python.org/pypi/pelican-feed-minify)
 [![version on pypi](https://img.shields.io/pypi/v/pelican-feed-minify)](https://pypi.python.org/pypi/pelican-feed-minify)
 [![Downloads](https://img.shields.io/pypi/dm/pelican-feed-minify)](https://pypi.org/project/pelican-feed-minify/)
