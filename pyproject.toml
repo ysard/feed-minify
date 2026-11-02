@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pelican-feed-minify"
+dynamic = ["version"]
+description = "A Pelican plugin to check & minify HTML fields before XML serialization into RSS & Atom feeds."
+readme = "README.md"
+authors = [
+    { name = "Ysard", email = "ysard@users.noreply.github.com" }
+]
+keywords = ["pelican", "feed", "RSS", "Atom", "minify", "minification"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Pelican",
+    "Framework :: Pelican :: Plugins",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+license = "AGPL-3.0-or-later"
+dependencies = [
+    "pelican>=4",
+    "minify-html>=0.18"
+]
+requires-python = ">3.11"
+
+[project.urls]
+Homepage = "https://github.com/ysard/feed-minify"
+Repository = "https://github.com/ysard/feed-minify"
+
+[project.optional-dependencies]
+dev = [
+    "pytest-cov>=2.6.1",
+    "pytest>=5.2.0",
+    "pytest-runner",
+    "zest.releaser[recommended]",
+    "prospector",
+    "coverage-badge"
+]
+
+[tool.setuptools.packages.find]
+# These lines are mandatory for editable mode:
+# Scans and includes absolutely everything inside `pelican/` no matter the depth.
+include = ["pelican.*"]
+namespaces = true
+
+[tool.setuptools.dynamic]
+version = { attr = "pelican.plugins.feed_minify.__version__" }
+
+[tool.zest-releaser]
+python-file-with-version = "pelican/plugins/feed_minify/__init__.py"
