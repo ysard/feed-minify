@@ -61,7 +61,11 @@ def test_characters_rejects_invalid_xml_10_characters(codepoint, caplog):
 
 
 def test_atom_remove_content(monkeypatch):
+    """Test effect of ATOM_FEED_SUMMARY_ONLY global setting on Atom feed
 
+    The content should be removed. Thus the description of the feed will
+    only contain the summaries.
+    """
     class FakeAtomFeed:
         def __init__(self, items=None):
             self.items = items or []
@@ -91,6 +95,7 @@ def test_atom_remove_content(monkeypatch):
 
 
 def test_minify_feed_processes_content_and_description():
+    """Check the removing of comments in content & description fields"""
     item = {
         "title": "An article",
         "content": "<p>Body</p><!-- body comment -->",
@@ -107,6 +112,7 @@ def test_minify_feed_processes_content_and_description():
 
 
 def test_minify_feed_processes_multiple_items():
+    """Check the removing of comments for multiple articles in a feed"""
     feed = SimpleNamespace(
         items=[
             {"title": "First", "content": "<p>First</p><!-- comment -->"},
@@ -122,6 +128,7 @@ def test_minify_feed_processes_multiple_items():
 
 
 def test_minify_feed_does_not_modify_title_or_other_metadata():
+    """Check that only content & description field are modified"""
     title = "<b>Title</b><!-- deliberately not treated as a feed HTML field -->"
     item = {
         "title": title,
@@ -142,6 +149,7 @@ def test_minify_feed_does_not_modify_title_or_other_metadata():
 
 
 def test_minify_feed_skips_missing_empty_and_non_string_values(monkeypatch):
+    """Check behavior if field value is missing, empty, or with wrong type"""
     def unexpected_minify(*args, **kwargs):
         pytest.fail("minify_html.minify must not be called for empty/non-string values")
 
@@ -165,6 +173,7 @@ def test_minify_feed_skips_missing_empty_and_non_string_values(monkeypatch):
 
 
 def test_register_connects_minifier_to_feed_generated(monkeypatch):
+    """Check the registration on the `feed_generated` signal"""
     connected_receivers = []
 
     class FakeSignal:
